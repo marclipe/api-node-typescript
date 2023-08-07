@@ -1,29 +1,23 @@
 import { Router } from "express";
-import { v4 as uuidV4 } from 'uuid'
+import { Category } from "../model/Category";
 
 export const categoriesRoutes = Router();
 
-//Precisei criar uma interface para categories
-interface Category {
-  name: string, 
-  description: string
-  id: string
-}
-
+//Tenho um Array de categorias
 const categories: Category[] = [];
 
 categoriesRoutes.post("/", (request, response) => {
   const { name, description } = request.body;  
 
-  const category = {
-    name,
-    description,
-    id: uuidV4(),
-  };
+  const category = new Category();
+  
+  Object.assign(category, {
+    name, 
+    description, 
+    createdAt: new Date
+  })
 
   categories.push(category);
 
-  console.log(category)
-
-  return response.status(201).send()
+  return response.status(201).json({ category })
 })
