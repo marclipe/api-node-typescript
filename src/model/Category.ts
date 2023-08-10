@@ -7,7 +7,6 @@ export class Category {
   createdAt: Date;
 
   constructor() {
-    //Se não tiver nenhum id ele recebe uuidV4()
     if (!this.id) {
       this.id = uuidV4()
     }
