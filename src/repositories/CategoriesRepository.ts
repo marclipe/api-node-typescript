@@ -25,4 +25,9 @@ export class CategoriesRepository {
 
     this.categories.push(category);
   }
+
+  //Retornar uma lista de categorias
+  list(): Category[] {
+    return this.categories;
+  }
 }
