@@ -13,7 +13,6 @@ export class CategoriesRepository {
     this.categories = []
   }
 
-  //Para cadastrar a nossa categoria
   create({ description, name }: ICreateCategoryDTO): void {
     const category = new Category();
 
@@ -26,8 +25,12 @@ export class CategoriesRepository {
     this.categories.push(category);
   }
 
-  //Retornar uma lista de categorias
   list(): Category[] {
     return this.categories;
+  }
+
+  findByName(name: string): Category | undefined {
+    const category = this.categories.find((category) => category.name === name);
+    return category;
   }
 }
